@@ -158,6 +158,7 @@ This requires extra space to store the type and pointer for each element.
 ## 🟦 2. **Stored in Contiguous Memory (C-style)**
 
 * NumPy stores data in a **contiguous block of memory**.
+*Contiguous memory is a block of memory where data is stored in sequentially adjacent addresses, forming a single, unbroken region
 * This is similar to arrays in **C**.
 * Because the location of each element is predictable, no pointers are needed.
 
@@ -212,4 +213,3 @@ You can answer like this:
 
 ---
 
-If you want this added to your interview notes in organized format, just tell me — I’ll include it!
