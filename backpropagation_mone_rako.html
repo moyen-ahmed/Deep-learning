@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Backpropagation — Neural Fire</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
+<style>/* Offline-safe font fallbacks */</style>
 <style>
 :root{
   --bg:#04080f;
@@ -28,7 +28,7 @@
 html{scroll-behavior:smooth}
 
 body{
-  font-family:var(--mono);
+  font-family:'Courier New',Courier,monospace;
   background:var(--bg);
   color:var(--white);
   min-height:100vh;
@@ -64,7 +64,7 @@ body::after{
   content:'';width:48px;height:1px;background:var(--green);opacity:.4;
 }
 .hero h1{
-  font-family:var(--display);
+  font-family:'Arial Black','Arial',Impact,sans-serif;
   font-size:clamp(2.8rem,8vw,7rem);
   font-weight:900;
   line-height:.9;
@@ -83,13 +83,13 @@ body::after{
 }
 .hero-desc{
   font-size:.85rem;color:var(--muted);max-width:560px;margin:0 auto 36px;
-  line-height:1.8;font-family:var(--mono);
+  line-height:1.8;font-family:'Courier New',Courier,monospace;
 }
 .tag-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .tag{
   font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
   padding:5px 14px;border-radius:4px;border:1px solid;
-  font-family:var(--mono);font-weight:700;
+  font-family:'Courier New',Courier,monospace;font-weight:700;
 }
 .tg{border-color:rgba(13,255,127,0.4);color:var(--green);background:rgba(13,255,127,0.06)}
 .tr{border-color:rgba(255,45,85,0.4);color:var(--red);background:rgba(255,45,85,0.06)}
@@ -106,7 +106,7 @@ body::after{
 .tick{
   flex:1;padding:12px 8px;text-align:center;
   font-size:.65rem;letter-spacing:2px;text-transform:uppercase;
-  font-family:var(--mono);font-weight:700;
+  font-family:'Courier New',Courier,monospace;font-weight:700;
   color:var(--muted);
   border-right:1px solid var(--border);
   transition:all .4s cubic-bezier(.4,0,.2,1);
@@ -133,7 +133,7 @@ body::after{
   content:'NEURAL NETWORK';
   position:absolute;top:14px;right:18px;
   font-size:8px;letter-spacing:4px;color:rgba(255,255,255,0.06);
-  font-family:var(--mono);font-weight:700;
+  font-family:'Courier New',Courier,monospace;font-weight:700;
 }
 #netCanvas{width:100%;height:400px;display:block;cursor:default}
 
@@ -190,7 +190,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
 /* ── BUTTONS ── */
 .btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .btn{
-  font-family:var(--display);font-weight:700;font-size:.65rem;
+  font-family:'Arial Black','Arial',Impact,sans-serif;font-weight:700;font-size:.65rem;
   letter-spacing:1.5px;text-transform:uppercase;
   padding:11px 18px;border:none;border-radius:8px;
   cursor:pointer;transition:all .2s cubic-bezier(.4,0,.2,1);
@@ -215,7 +215,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
   transition:border-color .4s,box-shadow .4s;
 }
 .meter-lbl{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.meter-num{font-size:1.2rem;font-weight:800;font-family:var(--mono);transition:all .4s}
+.meter-num{font-size:1.2rem;font-weight:800;font-family:'Courier New',Courier,monospace;transition:all .4s}
 .meter-sub{font-size:.6rem;color:var(--muted);margin-top:2px}
 
 /* ── MATH PANEL ── */
@@ -266,7 +266,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
 #explainInner .eo{color:var(--orange)}
 #explainInner .ep{color:var(--purple)}
 .explain-title{
-  font-family:var(--display);font-size:.75rem;font-weight:700;
+  font-family:'Arial Black','Arial',Impact,sans-serif;font-size:.75rem;font-weight:700;
   letter-spacing:1px;margin-bottom:10px;padding-left:12px;
 }
 
@@ -299,11 +299,11 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
 }
 .concept:hover{transform:translateY(-4px)}
 .concept-num{
-  font-family:var(--display);font-size:3.5rem;font-weight:900;
+  font-family:'Arial Black','Arial',Impact,sans-serif;font-size:3.5rem;font-weight:900;
   opacity:.08;line-height:1;margin-bottom:4px;
 }
 .concept-icon{font-size:2rem;margin-bottom:10px}
-.concept-title{font-family:var(--display);font-size:.85rem;font-weight:700;margin-bottom:8px}
+.concept-title{font-family:'Arial Black','Arial',Impact,sans-serif;font-size:.85rem;font-weight:700;margin-bottom:8px}
 .concept-text{font-size:.75rem;color:var(--muted);line-height:1.7}
 .c1 .concept-num,.c1 .concept-title{color:var(--green)}
 .c1:hover{border-color:rgba(13,255,127,0.3);box-shadow:0 0 40px rgba(13,255,127,0.05)}
@@ -321,7 +321,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
   border-radius:14px;padding:18px;text-align:center;
 }
 .int-icon{font-size:2.8rem;margin-bottom:10px}
-.int-title{font-family:var(--display);font-size:.75rem;font-weight:700;margin-bottom:6px;color:var(--cyan)}
+.int-title{font-family:'Arial Black','Arial',Impact,sans-serif;font-size:.75rem;font-weight:700;margin-bottom:6px;color:var(--cyan)}
 .int-text{font-size:.72rem;color:var(--muted);line-height:1.65}
 
 /* ── CHAIN RULE VISUAL ── */
@@ -329,13 +329,13 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
   background:var(--card);border:1px solid var(--border);
   border-radius:16px;padding:24px;margin-bottom:18px;
 }
-.chain-title{font-family:var(--display);font-size:1rem;font-weight:700;margin-bottom:16px}
+.chain-title{font-family:'Arial Black','Arial',Impact,sans-serif;font-size:1rem;font-weight:700;margin-bottom:16px}
 .chain-eq{
   display:flex;align-items:center;gap:10px;flex-wrap:wrap;
   font-size:.9rem;margin-bottom:12px;
 }
 .chain-box{
-  padding:10px 16px;border-radius:8px;font-family:var(--mono);font-weight:700;
+  padding:10px 16px;border-radius:8px;font-family:'Courier New',Courier,monospace;font-weight:700;
   border:1px solid;font-size:.8rem;transition:all .4s;
 }
 .cb-r{border-color:rgba(255,45,85,0.5);color:var(--red);background:rgba(255,45,85,0.08)}
@@ -344,7 +344,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
 .cb-b{border-color:rgba(45,156,255,0.5);color:var(--blue);background:rgba(45,156,255,0.08)}
 .chain-box.lit{filter:brightness(1.6);box-shadow:0 0 20px currentColor}
 .chain-arrow{color:var(--muted);font-size:1.2rem}
-.chain-val{font-size:.75rem;color:var(--muted);font-family:var(--mono);margin-top:4px;text-align:center;min-width:80px}
+.chain-val{font-size:.75rem;color:var(--muted);font-family:'Courier New',Courier,monospace;margin-top:4px;text-align:center;min-width:80px}
 
 /* ── HISTORY STRIP ── */
 .history-panel{
@@ -368,13 +368,13 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
   border-radius:16px;padding:24px;margin-bottom:18px;
   box-shadow:0 0 40px rgba(180,77,255,0.06);
 }
-.quiz-title{font-family:var(--display);font-size:.9rem;font-weight:700;color:var(--purple);margin-bottom:14px}
+.quiz-title{font-family:'Arial Black','Arial',Impact,sans-serif;font-size:.9rem;font-weight:700;color:var(--purple);margin-bottom:14px}
 .quiz-q{font-size:.85rem;margin-bottom:16px;line-height:1.7}
 .quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .quiz-opt{
   padding:10px 14px;border-radius:8px;border:1px solid var(--border);
   background:rgba(255,255,255,0.03);cursor:pointer;font-size:.78rem;
-  font-family:var(--mono);color:var(--muted);transition:all .2s;text-align:left;
+  font-family:'Courier New',Courier,monospace;color:var(--muted);transition:all .2s;text-align:left;
 }
 .quiz-opt:hover{border-color:rgba(180,77,255,0.4);color:var(--white);background:rgba(180,77,255,0.08)}
 .quiz-opt.correct{border-color:var(--green);color:var(--green);background:rgba(13,255,127,0.08)}
@@ -415,7 +415,6 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
 
 <div class="wrap">
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow">Deep Learning Visualizer</div>
   <h1>
@@ -432,7 +431,6 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
   </div>
 </section>
 
-<!-- PHASE TICKER -->
 <div class="ticker">
   <div class="tick" id="tk1">① Forward</div>
   <div class="tick" id="tk2">② Loss</div>
@@ -440,7 +438,6 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
   <div class="tick" id="tk4">④ Update</div>
 </div>
 
-<!-- NETWORK CANVAS -->
 <div class="net-wrap">
   <canvas id="netCanvas"></canvas>
   <div class="layer-labels">
@@ -452,10 +449,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
   </div>
 </div>
 
-<!-- BODY GRID -->
 <div class="body-grid">
-
-  <!-- LEFT: CONTROLS -->
   <div class="panel">
     <span class="panel-label">// Parameters — Drag to Change</span>
     <div class="slider-grid">
@@ -511,7 +505,6 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
     </div>
   </div>
 
-  <!-- RIGHT: LIVE MATH -->
   <div class="panel math-panel">
     <span class="panel-label">// Live Math — Watch It Flow</span>
     <div class="math-section">
@@ -536,7 +529,6 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
   </div>
 </div>
 
-<!-- EXPLAIN BOX -->
 <div class="explain" id="explainBox">
   <div class="explain-title" id="explainTitle" style="color:var(--cyan)">// What's Happening</div>
   <div id="explainInner">
@@ -550,7 +542,6 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
   </div>
 </div>
 
-<!-- CHAIN RULE VISUAL -->
 <div class="chain-panel">
   <div class="chain-title">The Chain Rule — Visualized</div>
   <div style="font-size:.75rem;color:var(--muted);margin-bottom:14px">The chain rule multiplies these three parts to get the gradient for weight w:</div>
@@ -576,12 +567,11 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
     </div>
   </div>
   <div style="font-size:.72rem;color:var(--muted);line-height:1.7">
-    <b style="color:var(--white)">Why multiply?</b> Because each piece measures "how much did this affect the next?" — like dominoes. 
+    <b style="color:var(--white)">Why multiply?</b> Because each piece measures "how much did this affect the next?" — like dominoes.
     How much did <b style="color:var(--red)">loss depend on output a</b>? Times how much did <b style="color:var(--orange)">a depend on z</b>? Times how much did <b style="color:var(--green)">z depend on w</b>? = Total effect of w on loss.
   </div>
 </div>
 
-<!-- LOSS CHART + SIGMOID -->
 <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin-bottom:18px">
   <div class="chart-panel">
     <span class="panel-label">// Loss Over Training Steps</span>
@@ -593,13 +583,11 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
   </div>
 </div>
 
-<!-- TRAINING HISTORY -->
 <div class="history-panel">
   <span class="panel-label">// Training History — <span id="iterLabel" style="color:var(--green)">0 iterations</span></span>
   <div id="histStrip"><div style="color:var(--muted);font-size:.75rem;padding:14px 0">Run backprop to build training history...</div></div>
 </div>
 
-<!-- CONCEPT CARDS -->
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px">
   <div class="concept c1" id="cc1">
     <div class="concept-num">01</div>
@@ -627,7 +615,6 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
   </div>
 </div>
 
-<!-- INTUITIONS -->
 <div class="intuition-row">
   <div class="int-card">
     <div class="int-icon">⛰️</div>
@@ -646,7 +633,6 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
   </div>
 </div>
 
-<!-- QUIZ -->
 <div class="quiz-panel" id="quizPanel">
   <div class="quiz-title">🧠 Test Your Understanding</div>
   <div class="quiz-q" id="qQuestion">Loading quiz...</div>
@@ -658,26 +644,25 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
   </div>
 </div>
 
-<!-- BOTTOM CONCEPTS -->
 <div class="bottom-grid">
   <div class="panel">
     <span class="panel-label">// Why Sigmoid?</span>
     <p style="font-size:.78rem;color:var(--muted);line-height:1.8">
-      Sigmoid maps any number to (0,1) — perfect for probabilities. Its derivative is beautiful: <b style="color:var(--white)">σ'(z) = σ(z)·(1−σ(z))</b>. 
+      Sigmoid maps any number to (0,1) — perfect for probabilities. Its derivative is beautiful: <b style="color:var(--white)">σ'(z) = σ(z)·(1−σ(z))</b>.
       This means we only need the output value to compute the gradient — super efficient for backprop.
     </p>
   </div>
   <div class="panel">
     <span class="panel-label">// Why Squared Loss?</span>
     <p style="font-size:.78rem;color:var(--muted);line-height:1.8">
-      <b style="color:var(--white)">L = (y−a)²</b> penalizes big mistakes much more than small ones (quadratic!). 
+      <b style="color:var(--white)">L = (y−a)²</b> penalizes big mistakes much more than small ones (quadratic!).
       Its gradient <b style="color:var(--white)">∂L/∂a = −2(y−a)</b> is simple and points directly at the error. Larger error → larger gradient → bigger step to fix it.
     </p>
   </div>
   <div class="panel">
     <span class="panel-label">// Why Learning Rate?</span>
     <p style="font-size:.78rem;color:var(--muted);line-height:1.8">
-      Too large η → overshoot, weights explode. Too small → learning crawls. The sweet spot lets the network descend the loss landscape smoothly. 
+      Too large η → overshoot, weights explode. Too small → learning crawls. The sweet spot lets the network descend the loss landscape smoothly.
       Try η=0.9 vs η=0.01 in Auto Train and <em>watch</em> the difference!
     </p>
   </div>
@@ -685,83 +670,98 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.4)}
 
 <div class="footer">Neural Fire — Backpropagation Visualizer &nbsp;|&nbsp; Save as index.html, enable GitHub Pages to share with anyone</div>
 
-</div><!-- /wrap -->
+</div>
 
 <script>
 // ═══════════════════════════════════════════════════════
 // AMBIENT BACKGROUND
 // ═══════════════════════════════════════════════════════
-const bgC=document.getElementById('bgCanvas');
-const bgX=bgC.getContext('2d');
-let bW,bH,bgNodes=[];
+const bgC = document.getElementById('bgCanvas');
+const bgX = bgC.getContext('2d');
+let bW, bH, bgNodes = [];
 
 function initBg(){
-  bW=bgC.width=window.innerWidth;
-  bH=bgC.height=window.innerHeight;
-  bgNodes=Array.from({length:60},()=>({
-    x:Math.random()*bW,y:Math.random()*bH,
-    vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,
-    r:Math.random()*2+.5,
-    c:Math.random()<.5?'rgba(13,255,127,':'rgba(45,156,255,'
+  bW = bgC.width = window.innerWidth;
+  bH = bgC.height = window.innerHeight;
+  bgNodes = Array.from({length:60}, () => ({
+    x: Math.random()*bW,
+    y: Math.random()*bH,
+    vx: (Math.random()-.5)*.3,
+    vy: (Math.random()-.5)*.3,
+    r: Math.random()*2 + .5,
+    c: Math.random()<.5 ? 'rgba(13,255,127,' : 'rgba(45,156,255,'
   }));
 }
+
 function drawBg(){
   bgX.clearRect(0,0,bW,bH);
-  bgNodes.forEach(n=>{
-    n.x+=n.vx;n.y+=n.vy;
-    if(n.x<0||n.x>bW)n.vx*=-1;
-    if(n.y<0||n.y>bH)n.vy*=-1;
+
+  bgNodes.forEach(n => {
+    n.x += n.vx;
+    n.y += n.vy;
+    if(n.x < 0 || n.x > bW) n.vx *= -1;
+    if(n.y < 0 || n.y > bH) n.vy *= -1;
   });
-  bgNodes.forEach((a,i)=>{
-    bgNodes.slice(i+1).forEach(b=>{
-      const d=Math.hypot(a.x-b.x,a.y-b.y);
-      if(d<100){
+
+  bgNodes.forEach((a,i) => {
+    bgNodes.slice(i+1).forEach(b => {
+      const d = Math.hypot(a.x-b.x, a.y-b.y);
+      if(d < 100){
         bgX.beginPath();
-        bgX.moveTo(a.x,a.y);bgX.lineTo(b.x,b.y);
-        bgX.strokeStyle=`rgba(255,255,255,${.04*(1-d/100)})`;
-        bgX.lineWidth=.5;bgX.stroke();
+        bgX.moveTo(a.x,a.y);
+        bgX.lineTo(b.x,b.y);
+        bgX.strokeStyle = `rgba(255,255,255,${.04*(1-d/100)})`;
+        bgX.lineWidth = .5;
+        bgX.stroke();
       }
     });
-    bgX.beginPath();bgX.arc(n.x,n.y,n.r,0,Math.PI*2);
-    bgX.fillStyle=n.c+'.5)';bgX.fill();
+
+    // FIXED: use "a", not undefined "n"
+    bgX.beginPath();
+    bgX.arc(a.x,a.y,a.r,0,Math.PI*2);
+    bgX.fillStyle = a.c + '.5)';
+    bgX.fill();
   });
+
   requestAnimationFrame(drawBg);
 }
-window.addEventListener('resize',initBg);
-initBg();drawBg();
+
+window.addEventListener('resize', initBg);
+initBg();
+drawBg();
 
 // ═══════════════════════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════════════════════
-const S={
+const S = {
   x:1.0,w:0.8,b:0.2,y:1,lr:0.1,
   z:null,a:null,L:null,
   dLda:null,dadz:null,dLdw:null,dLdb:null,
   phase:0,iters:0,lossHist:[],
   auto:false,autoT:null,
-  particles:[],
-  stepMode:false
+  particles:[]
 };
 
-const $ =id=>document.getElementById(id);
-const sig=z=>1/(1+Math.exp(-z));
-const f=(v,d=4)=>v===null?'—':parseFloat(v).toFixed(d);
+const $ = id => document.getElementById(id);
+const sig = z => 1/(1+Math.exp(-z));
+const f = (v,d=4) => v===null ? '—' : parseFloat(v).toFixed(d);
 
 // ═══════════════════════════════════════════════════════
 // SLIDER SETUP
 // ═══════════════════════════════════════════════════════
 function track(inp){
-  const mn=+inp.min,mx=+inp.max,v=+inp.value;
-  inp.style.setProperty('--p',((v-mn)/(mx-mn)*100)+'%');
+  const mn = +inp.min, mx = +inp.max, v = +inp.value;
+  inp.style.setProperty('--p', ((v-mn)/(mx-mn)*100) + '%');
 }
-[['sx','xV',1],['sw','wV',2],['sb','bV',2],['sy','yV',0],['slr','lrV',3]].forEach(([id,vid,dec])=>{
-  const inp=$(id);
-  inp.addEventListener('input',()=>{
+
+[['sx','xV',1],['sw','wV',2],['sb','bV',2],['sy','yV',0],['slr','lrV',3]].forEach(([id,vid,dec]) => {
+  const inp = $(id);
+  inp.addEventListener('input', () => {
     track(inp);
-    const key={'sx':'x','sw':'w','sb':'b','sy':'y','slr':'lr'}[id];
-    S[key]=parseFloat(inp.value);
-    $(vid).textContent=f(S[key],dec);
-    drawNet();drawSigmoid();
+    const key = {'sx':'x','sw':'w','sb':'b','sy':'y','slr':'lr'}[id];
+    S[key] = parseFloat(inp.value);
+    $(vid).textContent = f(S[key],dec);
+    drawSigmoid();
   });
   track(inp);
 });
@@ -769,27 +769,29 @@ function track(inp){
 // ═══════════════════════════════════════════════════════
 // NETWORK CANVAS
 // ═══════════════════════════════════════════════════════
-const netC=$('netCanvas'),netX=netC.getContext('2d');
-let NW,NH;
+const netC = $('netCanvas');
+const netX = netC.getContext('2d');
 
 function resizeNet(){
-  const r=netC.getBoundingClientRect();
-  NW=netC.width=r.width*devicePixelRatio;
-  NH=netC.height=r.height*devicePixelRatio;
+  const r = netC.getBoundingClientRect();
+  if(r.width === 0 || r.height === 0) return;
+
+  netC.width = Math.round(r.width * devicePixelRatio);
+  netC.height = Math.round(r.height * devicePixelRatio);
+
+  netX.setTransform(1,0,0,1,0,0);
   netX.scale(devicePixelRatio,devicePixelRatio);
 }
-window.addEventListener('resize',()=>{resizeNet();drawNet()});
-resizeNet();
+window.addEventListener('resize', resizeNet);
 
-function nw(){return netC.clientWidth}
-function nh(){return netC.clientHeight}
+function nw(){ return netC.clientWidth; }
+function nh(){ return netC.clientHeight; }
 
-// Node layout: 5 columns representing input, h1, h2, output, loss
 function nodePos(){
-  const W=nw(),H=nh();
+  const W=nw(), H=nh();
   const cols=[.1,.28,.46,.64,.82];
   const rows=[.35,.65];
-  return{
+  return {
     inp:{x:W*cols[0],y:H*.5,lbl:'x',sub:f(S.x,2),col:'#0dff7f'},
     h1a:{x:W*cols[1],y:H*rows[0],lbl:'h₁',sub:S.z!==null?f(S.z*.7+S.b*.3,3):'…',col:'#2d9cff'},
     h1b:{x:W*cols[1],y:H*rows[1],lbl:'h₂',sub:S.z!==null?f(S.z*.4-S.b*.2,3):'…',col:'#2d9cff'},
@@ -800,9 +802,16 @@ function nodePos(){
   };
 }
 
-let animT=null;
+let _loopStarted=false;
+function startNetLoop(){
+  if(!_loopStarted){
+    _loopStarted=true;
+    drawNet();
+  }
+}
+
 function drawNet(){
-  const W=nw(),H=nh();
+  const W=nw(), H=nh();
   const ctx=netX;
   ctx.clearRect(0,0,W,H);
   const np=nodePos();
@@ -810,13 +819,14 @@ function drawNet(){
   const R=Math.min(30,W*.045);
   const Rs=R*.7;
 
-  // Grid subtle
-  ctx.save();ctx.globalAlpha=.04;ctx.strokeStyle='#4488ff';ctx.lineWidth=.8;
-  for(let i=0;i<W;i+=36){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,H);ctx.stroke()}
-  for(let i=0;i<H;i+=36){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(W,i);ctx.stroke()}
+  ctx.save();
+  ctx.globalAlpha=.04;
+  ctx.strokeStyle='#4488ff';
+  ctx.lineWidth=.8;
+  for(let i=0;i<W;i+=36){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,H);ctx.stroke();}
+  for(let i=0;i<H;i+=36){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(W,i);ctx.stroke();}
   ctx.restore();
 
-  // Connections
   const fwd=ph>=1,bwd=ph>=3,lossPhase=ph>=2;
   const conns=[
     [np.inp,np.h1a],[np.inp,np.h1b],
@@ -825,50 +835,70 @@ function drawNet(){
     [np.h2a,np.out],[np.h2b,np.out],
     [np.out,np.loss],
   ];
+
   conns.forEach(([a,b],i)=>{
     const isLoss=i===8;
     const c=isLoss?'#ff9f2d':fwd?'#0dff7f':'#1a2a3a';
-    const alpha=fwd?(isLoss&&!lossPhase?.3:1):.25;
+    const alpha=fwd?((isLoss&&!lossPhase)?0.3:1):0.25;
     const w=isLoss?1.5:fwd?1.8:.8;
-    // Forward glow
+
     if(fwd&&!isLoss){
-      ctx.save();ctx.globalAlpha=alpha*.25;
-      ctx.strokeStyle=c;ctx.lineWidth=w+6;ctx.filter=`blur(6px)`;
-      ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+      ctx.save();
+      ctx.globalAlpha=alpha*.25;
+      ctx.strokeStyle=c;
+      ctx.lineWidth=w+8;
+      ctx.shadowColor=c;
+      ctx.shadowBlur=10;
+      ctx.beginPath();
+      ctx.moveTo(a.x,a.y);
+      ctx.lineTo(b.x,b.y);
+      ctx.stroke();
       ctx.restore();
     }
-    ctx.save();ctx.globalAlpha=alpha;ctx.strokeStyle=c;ctx.lineWidth=w;
-    ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+
+    ctx.save();
+    ctx.globalAlpha=alpha;
+    ctx.strokeStyle=c;
+    ctx.lineWidth=w;
+    ctx.beginPath();
+    ctx.moveTo(a.x,a.y);
+    ctx.lineTo(b.x,b.y);
+    ctx.stroke();
     ctx.restore();
 
-    // Backward gradient lines
     if(bwd&&!isLoss){
-      const t=(Date.now()/600)%1;
-      ctx.save();ctx.globalAlpha=.7;ctx.strokeStyle='#ff2d55';
-      ctx.lineWidth=1.5;ctx.setLineDash([8,5]);
+      ctx.save();
+      ctx.globalAlpha=.7;
+      ctx.strokeStyle='#ff2d55';
+      ctx.lineWidth=1.5;
+      ctx.setLineDash([8,5]);
       ctx.lineDashOffset=-(Date.now()/25)%13;
-      ctx.beginPath();ctx.moveTo(b.x,b.y);ctx.lineTo(a.x,a.y);ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(b.x,b.y);
+      ctx.lineTo(a.x,a.y);
+      ctx.stroke();
       ctx.restore();
     }
   });
 
-  // Weight label on main edge
   if(fwd){
     const mx=(np.inp.x+np.h1a.x)/2,my=(np.inp.y+np.h1a.y)/2-14;
     ctx.fillStyle='rgba(13,255,127,.7)';
-    ctx.font=`bold 10px JetBrains Mono`;
-    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.font='bold 10px JetBrains Mono';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
     ctx.fillText(`w=${f(S.w,2)}`,mx,my);
   }
-  if(bwd){
+
+  if(bwd && S.dLdw !== null){
     const mx=(np.h2a.x+np.out.x)/2,my=(np.h2a.y+np.out.y)/2-14;
     ctx.fillStyle='rgba(255,45,85,.8)';
-    ctx.font=`bold 10px JetBrains Mono`;
-    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.font='bold 10px JetBrains Mono';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
     ctx.fillText(`∂L/∂w=${f(S.dLdw,3)}`,mx,my);
   }
 
-  // Loss background tint
   if(S.L!==null&&lossPhase){
     const intensity=Math.min(S.L*4,1);
     ctx.save();
@@ -878,17 +908,20 @@ function drawNet(){
     ctx.restore();
   }
 
-  // Particles
   S.particles=S.particles.filter(p=>{
-    p.t+=.022;if(p.t>1)return false;
+    p.t+=.022;
+    if(p.t>1)return false;
     const px=p.x1+(p.x2-p.x1)*p.t;
     const py=p.y1+(p.y2-p.y1)*p.t+(Math.sin(p.t*Math.PI)*20*(p.wave||0));
-    ctx.beginPath();ctx.arc(px,py,p.r*(1-p.t*.4),0,Math.PI*2);
-    ctx.globalAlpha=p.a*(1-p.t);ctx.fillStyle=p.c;ctx.fill();ctx.globalAlpha=1;
+    ctx.beginPath();
+    ctx.arc(px,py,p.r*(1-p.t*.4),0,Math.PI*2);
+    ctx.globalAlpha=p.a*(1-p.t);
+    ctx.fillStyle=p.c;
+    ctx.fill();
+    ctx.globalAlpha=1;
     return true;
   });
 
-  // Nodes
   const nodes=[
     [np.inp,R,ph>=1],
     [np.h1a,R*.85,ph>=1],[np.h1b,R*.85,ph>=1],
@@ -902,24 +935,41 @@ function drawNet(){
 }
 
 function drawNode(ctx,n,r,active){
+  if(!n||!n.x)return;
   const x=n.x,y=n.y;
+
   if(active){
     const g=ctx.createRadialGradient(x,y,r*.5,x,y,r+20);
-    g.addColorStop(0,n.col+'66');g.addColorStop(1,'transparent');
-    ctx.globalAlpha=.6;ctx.fillStyle=g;
-    ctx.beginPath();ctx.arc(x,y,r+20,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
+    g.addColorStop(0,n.col+'66');
+    g.addColorStop(1,'transparent');
+    ctx.globalAlpha=.6;
+    ctx.fillStyle=g;
+    ctx.beginPath();
+    ctx.arc(x,y,r+20,0,Math.PI*2);
+    ctx.fill();
+    ctx.globalAlpha=1;
   }
+
   const bg=ctx.createRadialGradient(x,y-r*.2,1,x,y,r);
-  bg.addColorStop(0,'#1a2a40');bg.addColorStop(1,'#080e1a');
-  ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
-  ctx.fillStyle=bg;ctx.fill();
+  bg.addColorStop(0,'#1a2a40');
+  bg.addColorStop(1,'#080e1a');
+  ctx.beginPath();
+  ctx.arc(x,y,r,0,Math.PI*2);
+  ctx.fillStyle=bg;
+  ctx.fill();
+
   ctx.strokeStyle=active?n.col:'#1a2a3a';
   ctx.lineWidth=active?2:1;
-  ctx.globalAlpha=active?1:.4;ctx.stroke();ctx.globalAlpha=1;
+  ctx.globalAlpha=active?1:.4;
+  ctx.stroke();
+  ctx.globalAlpha=1;
+
   ctx.fillStyle=active?n.col:'rgba(255,255,255,.3)';
-  ctx.font=`bold ${r>.25*nw()?.6:Math.max(9,r*.55)}px JetBrains Mono`;
-  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.font=`bold ${Math.max(9,r*.55)}px JetBrains Mono`;
+  ctx.textAlign='center';
+  ctx.textBaseline='middle';
   ctx.fillText(n.lbl,x,y-r*.22);
+
   ctx.fillStyle='rgba(255,255,255,.4)';
   ctx.font=`${Math.max(7,r*.38)}px JetBrains Mono`;
   ctx.fillText(n.sub,x,y+r*.3);
@@ -927,17 +977,18 @@ function drawNode(ctx,n,r,active){
 
 function spawnParticles(dir){
   const np=nodePos();
-  const paths=dir==='fwd'?[
+  const paths=dir==='fwd' ? [
     {a:np.inp,b:np.h1a,c:'#0dff7f'},{a:np.inp,b:np.h1b,c:'#0dff7f'},
     {a:np.h1a,b:np.h2a,c:'#2d9cff'},{a:np.h1b,b:np.h2b,c:'#2d9cff'},
     {a:np.h2a,b:np.out,c:'#b44dff'},{a:np.h2b,b:np.out,c:'#b44dff'},
     {a:np.out,b:np.loss,c:'#ff9f2d'},
-  ]:[
+  ] : [
     {a:np.loss,b:np.out,c:'#ff2d55'},{a:np.out,b:np.h2a,c:'#ff2d55'},
     {a:np.out,b:np.h2b,c:'#ff2d55'},{a:np.h2a,b:np.h1a,c:'#ff6688'},
     {a:np.h2b,b:np.h1b,c:'#ff6688'},{a:np.h1a,b:np.inp,c:'#ff8899'},
     {a:np.h1b,b:np.inp,c:'#ff8899'},
   ];
+
   paths.forEach((p,pi)=>{
     for(let i=0;i<6;i++){
       setTimeout(()=>{
@@ -953,21 +1004,44 @@ function spawnParticles(dir){
 // ═══════════════════════════════════════════════════════
 // SIGMOID CANVAS
 // ═══════════════════════════════════════════════════════
+function setupHiDPICanvas(canvas){
+  const ctx = canvas.getContext('2d');
+  const W = canvas.clientWidth;
+  const H = canvas.clientHeight;
+  const targetW = Math.round(W * devicePixelRatio);
+  const targetH = Math.round(H * devicePixelRatio);
+
+  if(canvas.width !== targetW || canvas.height !== targetH){
+    canvas.width = targetW;
+    canvas.height = targetH;
+  }
+
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+  return {ctx, W, H};
+}
+
 function drawSigmoid(){
-  const c=$('sigCanvas'),ctx=c.getContext('2d');
-  const W=c.clientWidth,H=c.clientHeight;
-  if(c.width!==W){c.width=W*devicePixelRatio;c.height=H*devicePixelRatio;ctx.scale(devicePixelRatio,devicePixelRatio)}
+  const canvas = $('sigCanvas');
+  const {ctx,W,H} = setupHiDPICanvas(canvas);
+
   ctx.clearRect(0,0,W,H);
   const p={l:30,r:12,t:14,b:24};
   const cW=W-p.l-p.r,cH=H-p.t-p.b;
-  // axes
-  ctx.strokeStyle='rgba(255,255,255,.1)';ctx.lineWidth=1;
+
+  ctx.strokeStyle='rgba(255,255,255,.1)';
+  ctx.lineWidth=1;
   ctx.beginPath();ctx.moveTo(p.l,p.t+cH/2);ctx.lineTo(p.l+cW,p.t+cH/2);ctx.stroke();
   ctx.beginPath();ctx.moveTo(p.l+cW/2,p.t);ctx.lineTo(p.l+cW/2,p.t+cH);ctx.stroke();
-  // curve
+
   const grad=ctx.createLinearGradient(p.l,0,p.l+cW,0);
-  grad.addColorStop(0,'#2d9cff');grad.addColorStop(.5,'#0dff7f');grad.addColorStop(1,'#ff9f2d');
-  ctx.beginPath();ctx.strokeStyle=grad;ctx.lineWidth=2.5;
+  grad.addColorStop(0,'#2d9cff');
+  grad.addColorStop(.5,'#0dff7f');
+  grad.addColorStop(1,'#ff9f2d');
+
+  ctx.beginPath();
+  ctx.strokeStyle=grad;
+  ctx.lineWidth=2.5;
   for(let px=0;px<=cW;px++){
     const zv=-4+px/cW*8;
     const av=sig(zv);
@@ -975,19 +1049,27 @@ function drawSigmoid(){
     px===0?ctx.moveTo(cx,cy):ctx.lineTo(cx,cy);
   }
   ctx.stroke();
-  // current point
+
   if(S.z!==null){
     const zv=S.z,av=sig(zv);
     const cx=p.l+(zv+4)/8*cW,cy=p.t+cH*(1-av);
-    ctx.beginPath();ctx.arc(cx,cy,6,0,Math.PI*2);
-    ctx.fillStyle='#fff';ctx.shadowColor='#0dff7f';ctx.shadowBlur=12;ctx.fill();
+    ctx.beginPath();
+    ctx.arc(cx,cy,6,0,Math.PI*2);
+    ctx.fillStyle='#fff';
+    ctx.shadowColor='#0dff7f';
+    ctx.shadowBlur=12;
+    ctx.fill();
     ctx.shadowBlur=0;
-    ctx.fillStyle='rgba(255,255,255,.5)';ctx.font='9px JetBrains Mono';
-    ctx.textAlign='center';ctx.fillText(`z=${f(zv,2)}`,cx,cy-10);
+    ctx.fillStyle='rgba(255,255,255,.5)';
+    ctx.font='9px JetBrains Mono';
+    ctx.textAlign='center';
+    ctx.fillText(`z=${f(zv,2)}`,cx,cy-10);
   }
-  // labels
-  ctx.fillStyle='rgba(255,255,255,.25)';ctx.font='8px JetBrains Mono';
-  ctx.textAlign='right';ctx.fillText('1',p.l-3,p.t+6);
+
+  ctx.fillStyle='rgba(255,255,255,.25)';
+  ctx.font='8px JetBrains Mono';
+  ctx.textAlign='right';
+  ctx.fillText('1',p.l-3,p.t+6);
   ctx.fillText('.5',p.l-3,p.t+cH/2+4);
   ctx.fillText('0',p.l-3,p.t+cH+4);
 }
@@ -996,56 +1078,85 @@ function drawSigmoid(){
 // LOSS CHART
 // ═══════════════════════════════════════════════════════
 function drawLoss(){
-  const c=$('lossCanvas'),ctx=c.getContext('2d');
-  const W=c.clientWidth,H=c.clientHeight;
-  if(c.width!==W){c.width=W*devicePixelRatio;c.height=H*devicePixelRatio;ctx.scale(devicePixelRatio,devicePixelRatio)}
+  const canvas = $('lossCanvas');
+  const {ctx,W,H} = setupHiDPICanvas(canvas);
+
   ctx.clearRect(0,0,W,H);
   const hist=S.lossHist;
+
   if(hist.length<2){
-    ctx.fillStyle='rgba(255,255,255,.15)';ctx.font='11px JetBrains Mono';
-    ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.fillText('Run backpropagation to see loss curve',W/2,H/2);return;
+    ctx.fillStyle='rgba(255,255,255,.15)';
+    ctx.font='11px JetBrains Mono';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    ctx.fillText('Run backpropagation to see loss curve',W/2,H/2);
+    return;
   }
+
   const p={l:44,r:16,t:16,b:28};
   const cW=W-p.l-p.r,cH=H-p.t-p.b;
   const maxL=Math.max(...hist,.001);
-  // grid lines
-  ctx.strokeStyle='rgba(255,255,255,.05)';ctx.lineWidth=1;
+
+  ctx.strokeStyle='rgba(255,255,255,.05)';
+  ctx.lineWidth=1;
   [0,.25,.5,.75,1].forEach(t=>{
     const gy=p.t+cH*(1-t);
-    ctx.beginPath();ctx.moveTo(p.l,gy);ctx.lineTo(p.l+cW,gy);ctx.stroke();
-    ctx.fillStyle='rgba(255,255,255,.2)';ctx.font='8px JetBrains Mono';
-    ctx.textAlign='right';ctx.fillText(f(maxL*t,3),p.l-4,gy+4);
+    ctx.beginPath();
+    ctx.moveTo(p.l,gy);
+    ctx.lineTo(p.l+cW,gy);
+    ctx.stroke();
+    ctx.fillStyle='rgba(255,255,255,.2)';
+    ctx.font='8px JetBrains Mono';
+    ctx.textAlign='right';
+    ctx.fillText(f(maxL*t,3),p.l-4,gy+4);
   });
-  // fill
+
   const fillG=ctx.createLinearGradient(0,p.t,0,p.t+cH);
-  fillG.addColorStop(0,'rgba(255,45,85,.35)');fillG.addColorStop(1,'rgba(13,255,127,.05)');
+  fillG.addColorStop(0,'rgba(255,45,85,.35)');
+  fillG.addColorStop(1,'rgba(13,255,127,.05)');
+
   ctx.beginPath();
   hist.forEach((v,i)=>{
     const cx=p.l+(i/Math.max(hist.length-1,1))*cW;
     const cy=p.t+cH*(1-v/maxL);
     i===0?ctx.moveTo(cx,cy):ctx.lineTo(cx,cy);
   });
-  ctx.lineTo(p.l+cW,p.t+cH);ctx.lineTo(p.l,p.t+cH);ctx.closePath();
-  ctx.fillStyle=fillG;ctx.fill();
-  // line
-  ctx.beginPath();ctx.strokeStyle='#0dff7f';ctx.lineWidth=2.5;ctx.lineJoin='round';
+  ctx.lineTo(p.l+cW,p.t+cH);
+  ctx.lineTo(p.l,p.t+cH);
+  ctx.closePath();
+  ctx.fillStyle=fillG;
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.strokeStyle='#0dff7f';
+  ctx.lineWidth=2.5;
+  ctx.lineJoin='round';
   hist.forEach((v,i)=>{
     const cx=p.l+(i/Math.max(hist.length-1,1))*cW;
     const cy=p.t+cH*(1-v/maxL);
     i===0?ctx.moveTo(cx,cy):ctx.lineTo(cx,cy);
   });
   ctx.stroke();
-  // endpoint dot
+
   const lx=p.l+cW,ly=p.t+cH*(1-hist[hist.length-1]/maxL);
-  ctx.beginPath();ctx.arc(lx,ly,5,0,Math.PI*2);
-  ctx.fillStyle='#0dff7f';ctx.shadowColor='#0dff7f';ctx.shadowBlur=10;ctx.fill();ctx.shadowBlur=0;
-  ctx.fillStyle='#0dff7f';ctx.font='bold 9px JetBrains Mono';ctx.textAlign='left';
+  ctx.beginPath();
+  ctx.arc(lx,ly,5,0,Math.PI*2);
+  ctx.fillStyle='#0dff7f';
+  ctx.shadowColor='#0dff7f';
+  ctx.shadowBlur=10;
+  ctx.fill();
+  ctx.shadowBlur=0;
+
+  ctx.fillStyle='#0dff7f';
+  ctx.font='bold 9px JetBrains Mono';
+  ctx.textAlign='left';
   ctx.fillText(f(hist[hist.length-1],5),lx+7,ly+4);
-  // "converging" label
+
   if(hist.length>3&&hist[hist.length-1]<0.01){
-    ctx.fillStyle='rgba(13,255,127,.7)';ctx.font='bold 10px JetBrains Mono';
-    ctx.textAlign='center';ctx.fillText('✓ CONVERGED',p.l+cW/2,p.t+18);
+    ctx.fillStyle='rgba(13,255,127,.7)';
+    ctx.font='bold 10px JetBrains Mono';
+    ctx.textAlign='center';
+    ctx.fillText('✓ CONVERGED',p.l+cW/2,p.t+18);
   }
 }
 
@@ -1056,7 +1167,7 @@ function setPhase(n){
   S.phase=n;
   const ticks=['tk1','tk2','tk3','tk4'];
   const cls=['t-fwd','t-loss','t-bwd','t-upd'];
-  ticks.forEach((id,i)=>{$(id).className='tick'+(n===i+1?' '+cls[i]:'')});
+  ticks.forEach((id,i)=>{$(id).className='tick'+(n===i+1?' '+cls[i]:'');});
   const ccs=['cc1','cc2','cc3','cc4'];
   ccs.forEach((id,i)=>{
     $(id).style.borderColor=n===i+1?['rgba(13,255,127,.4)','rgba(255,159,45,.4)','rgba(255,45,85,.4)','rgba(45,156,255,.4)'][i]:'';
@@ -1071,21 +1182,22 @@ function lit(id,val,cls){
   const row=$(id),num=row.querySelector('.eq-num');
   row.className='eq-row '+cls;
   num.textContent=val;
-  num.style.animation='none';
-  requestAnimationFrame(()=>{num.style.animation=''});
 }
+
 function clearLit(){
   ['eq-z','eq-a','eq-L','eq-dLda','eq-dadz','eq-dzdw','eq-dLdw','eq-dLdb','eq-nw','eq-nb']
     .forEach(id=>$(id).className='eq-row');
 }
 
 function chainLit(v1,v2,v3,v4){
-  ['cb1','cb2','cb3','cb4'].forEach((id,i)=>{
-    $(id).classList[i===3?'add':'toggle']('lit',true);
+  ['cb1','cb2','cb3','cb4'].forEach(id=>{
+    $(id).classList.add('lit');
     setTimeout(()=>$(id).classList.remove('lit'),2000);
   });
-  $('cv1').textContent=v1;$('cv2').textContent=v2;
-  $('cv3').textContent=v3;$('cv4').textContent=v4;
+  $('cv1').textContent=v1;
+  $('cv2').textContent=v2;
+  $('cv3').textContent=v3;
+  $('cv4').textContent=v4;
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1095,9 +1207,11 @@ function runForward(){
   const {x,w,b,y}=S;
   const z=w*x+b,a=sig(z),L=(y-a)**2;
   S.z=z;S.a=a;S.L=L;
-  setPhase(1);setTimeout(()=>setPhase(2),500);
+
+  setPhase(1);
+  setTimeout(()=>setPhase(2),500);
+
   clearLit();
-  const dl=t=>setTimeout(()=>{},t);
   lit('eq-z',`${f(w,2)}×${f(x,2)}+${f(b,2)} = ${f(z,4)}`,'lit-g');
   setTimeout(()=>lit('eq-a',`σ(${f(z,3)}) = ${f(a,4)}`,'lit-g'),180);
   setTimeout(()=>{
@@ -1106,11 +1220,14 @@ function runForward(){
     $('mv-L').style.color=L>0.15?'var(--red)':L>0.05?'var(--orange)':'var(--green)';
     $('ms-L').textContent=L<0.01?'✓ near zero':L>0.2?'↑ high!':'';
   },360);
+
   spawnParticles('fwd');
   drawSigmoid();
+
   const eb=$('explainBox'),ei=$('explainInner'),et=$('explainTitle');
   eb.className='explain e-fwd';
-  et.style.color='var(--green)';et.textContent='// Forward Pass';
+  et.style.color='var(--green)';
+  et.textContent='// Forward Pass';
   ei.innerHTML=`The input <b class="eg">x = ${f(x,2)}</b> was multiplied by weight <b class="eg">w = ${f(w,2)}</b> and bias <b class="eg">b = ${f(b,2)}</b> was added:<br>
   <b>z = ${f(w,2)} × ${f(x,2)} + ${f(b,2)} = ${f(z,4)}</b><br><br>
   The sigmoid activation squashed z to a probability: <b>a = σ(${f(z,3)}) = ${f(a,4)}</b><br><br>
@@ -1122,43 +1239,67 @@ function runForward(){
 // BACKWARD PASS
 // ═══════════════════════════════════════════════════════
 function runBackward(){
-  if(S.z===null)runForward();
-  const {x,w,b,y,lr,a,z,L}=S;
+  if(S.z===null) runForward();
+
+  const {x,w,b,y,lr,a,L}=S;
   const dLda=-2*(y-a),dadz=a*(1-a),dLdw=dLda*dadz*x,dLdb=dLda*dadz;
   S.dLda=dLda;S.dadz=dadz;S.dLdw=dLdw;S.dLdb=dLdb;
+
   const nW=w-lr*dLdw,nB=b-lr*dLdb;
-  setPhase(3);setTimeout(()=>setPhase(4),900);
+
+  setPhase(3);
+  setTimeout(()=>setPhase(4),900);
+
   lit('eq-dLda',`−2×(${y}−${f(a,3)}) = ${f(dLda,5)}`,'lit-r');
   setTimeout(()=>lit('eq-dadz',`${f(a,3)}×(1−${f(a,3)}) = ${f(dadz,5)}`,'lit-r'),150);
   setTimeout(()=>lit('eq-dzdw',`x = ${f(x,2)}`,'lit-r'),300);
   setTimeout(()=>lit('eq-dLdw',f(dLdw,6),'lit-r'),450);
   setTimeout(()=>lit('eq-dLdb',f(dLdb,6),'lit-r'),600);
+
   setTimeout(()=>{
     lit('eq-nw',`${f(w,4)} − ${f(lr,2)}×${f(dLdw,4)} = ${f(nW,5)}`,'lit-b');
     lit('eq-nb',`${f(b,4)} − ${f(lr,2)}×${f(dLdb,4)} = ${f(nB,5)}`,'lit-b');
+
     chainLit(f(dLda,3),f(dadz,3),f(x,2),f(dLdw,4));
+
     $('mv-g').textContent=f(dLdw,4);
     $('mv-g').style.color=Math.abs(dLdw)>0.1?'var(--red)':'var(--green)';
     $('ms-g').textContent=dLdw>0?'w too large':'w too small';
-    // Apply update
-    S.w=nW;S.b=nB;
-    const wC=Math.max(-3,Math.min(3,nW)),bC=Math.max(-3,Math.min(3,nB));
-    $('sw').value=wC;track($('sw'));$('wV').textContent=f(wC,3);
-    $('sb').value=bC;track($('sb'));$('bV').textContent=f(bC,3);
+
+    S.w=nW;
+    S.b=nB;
+
+    const wC=Math.max(-3,Math.min(3,nW));
+    const bC=Math.max(-3,Math.min(3,nB));
+
+    $('sw').value=wC; track($('sw')); $('wV').textContent=f(wC,3);
+    $('sb').value=bC; track($('sb')); $('bV').textContent=f(bC,3);
+
     $('mv-w').textContent=f(nW,4);
     $('mv-w').style.color=nW>w?'var(--green)':'var(--red)';
     $('ms-w').textContent=nW>w?'↑ increased':'↓ decreased';
+
     $('mv-b').textContent=f(nB,4);
     $('mv-b').style.color=nB>b?'var(--green)':'var(--red)';
-    S.iters++;S.lossHist.push(L);
+    $('ms-b').textContent=nB>b?'↑ increased':'↓ decreased';
+
+    S.iters++;
+    S.lossHist.push(L);
     $('iterLabel').textContent=`${S.iters} iteration${S.iters!==1?'s':''}`;
-    addHistDot(L,S.iters);drawLoss();
-    S.z=null;S.a=null;S.L=null;
+    addHistDot(L,S.iters);
+    drawLoss();
+
+    S.z=null;
+    S.a=null;
+    S.L=null;
   },750);
+
   spawnParticles('bwd');
+
   const eb=$('explainBox'),ei=$('explainInner'),et=$('explainTitle');
   eb.className='explain e-bwd';
-  et.style.color='var(--red)';et.textContent='// Backpropagation';
+  et.style.color='var(--red)';
+  et.textContent='// Backpropagation';
   ei.innerHTML=`Using the <b>chain rule</b>, error flows backward:<br><br>
   <b class="er">∂L/∂a</b> = −2(${y}−${f(a,3)}) = <b class="er">${f(dLda,4)}</b> → how much did output affect loss?<br>
   <b class="eo">∂a/∂z</b> = ${f(a,3)}×(1−${f(a,3)}) = <b class="eo">${f(dadz,4)}</b> → how much did z affect output?<br>
@@ -1173,8 +1314,8 @@ function runBackward(){
 // ═══════════════════════════════════════════════════════
 let stepQ=0;
 function runStep(){
-  if(stepQ===0){runForward();stepQ=1}
-  else{runBackward();stepQ=0}
+  if(stepQ===0){runForward();stepQ=1;}
+  else{runBackward();stepQ=0;}
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1183,13 +1324,16 @@ function runStep(){
 function toggleAuto(){
   S.auto=!S.auto;
   if(S.auto){
-    $('bAuto').textContent='⏸ Pause';$('bAuto').style.background='var(--orange)';
+    $('bAuto').textContent='⏸ Pause';
+    $('bAuto').style.background='var(--orange)';
     autoLoop();
   }else{
-    $('bAuto').textContent='⚡ Train';$('bAuto').style.background='var(--blue)';
+    $('bAuto').textContent='⚡ Train';
+    $('bAuto').style.background='var(--blue)';
     clearTimeout(S.autoT);
   }
 }
+
 function autoLoop(){
   if(!S.auto)return;
   runForward();
@@ -1204,46 +1348,80 @@ function autoLoop(){
 // ═══════════════════════════════════════════════════════
 function addHistDot(L,i){
   const strip=$('histStrip');
-  if(strip.querySelector('div[style]'))strip.innerHTML='';
+  if(strip.querySelector('div[style]')) strip.innerHTML='';
   const d=document.createElement('div');
   const cls=L<0.05?'done':L<0.2?'mid':'bad';
   d.className=`hist-dot ${cls} pop-in`;
   d.innerHTML=`<span style="font-size:7px">#${i}</span><span>${f(L,3)}</span>`;
   strip.appendChild(d);
   strip.scrollLeft=99999;
-  if(strip.children.length>80)strip.removeChild(strip.firstChild);
+  if(strip.children.length>80) strip.removeChild(strip.firstChild);
 }
 
 // ═══════════════════════════════════════════════════════
 // RESET
 // ═══════════════════════════════════════════════════════
 function reset(){
-  S.auto=false;clearTimeout(S.autoT);
-  $('bAuto').textContent='⚡ Train';$('bAuto').style.background='var(--blue)';
-  Object.assign(S,{x:1,w:.8,b:.2,y:1,lr:.1,z:null,a:null,L:null,
-    dLda:null,dadz:null,dLdw:null,dLdb:null,phase:0,iters:0,lossHist:[],particles:[]});
-  [['sx',1],['sw',.8],['sb',.2],['sy',1],['slr',.1]].forEach(([id,v])=>{
-    $(id).value=v;track($(id));
+  S.auto=false;
+  clearTimeout(S.autoT);
+  $('bAuto').textContent='⚡ Train';
+  $('bAuto').style.background='var(--blue)';
+
+  Object.assign(S,{
+    x:1,w:.8,b:.2,y:1,lr:.1,
+    z:null,a:null,L:null,
+    dLda:null,dadz:null,dLdw:null,dLdb:null,
+    phase:0,iters:0,lossHist:[],particles:[]
   });
-  $('xV').textContent='1.0';$('wV').textContent='0.80';$('bV').textContent='0.20';
-  $('yV').textContent='1';$('lrV').textContent='0.100';
-  ['mv-w','mv-b','mv-L','mv-g'].forEach(id=>$(id).textContent=id==='mv-w'?'0.80':id==='mv-b'?'0.20':'—');
-  ['ms-w','ms-b','ms-L','ms-g'].forEach(id=>$(id).textContent='—');
-  ['lit-g','lit-o','lit-r','lit-b'].forEach(()=>{});clearLit();
+
+  [['sx',1],['sw',.8],['sb',.2],['sy',1],['slr',.1]].forEach(([id,v])=>{
+    $(id).value=v;
+    track($(id));
+  });
+
+  $('xV').textContent='1.0';
+  $('wV').textContent='0.80';
+  $('bV').textContent='0.20';
+  $('yV').textContent='1';
+  $('lrV').textContent='0.100';
+
+  $('mv-w').textContent='0.80';
+  $('mv-b').textContent='0.20';
+  $('mv-L').textContent='—';
+  $('mv-g').textContent='—';
+
+  $('ms-w').textContent='—';
+  $('ms-b').textContent='—';
+  $('ms-L').textContent='—';
+  $('ms-g').textContent='—';
+
+  clearLit();
+
   ['ev-z','ev-a','ev-L','ev-dLda','ev-dadz','ev-dzdw','ev-dLdw','ev-dLdb','ev-nw','ev-nb']
-    .forEach(id=>{const e=$(id);if(e)e.textContent='—'});
+    .forEach(id=>{const e=$(id); if(e)e.textContent='—';});
+
   ['cv1','cv2','cv3','cv4'].forEach(id=>$(id).textContent='—');
-  setPhase(0);S.particles=[];
+
+  setPhase(0);
+  S.particles=[];
+
   $('iterLabel').textContent='0 iterations';
   $('histStrip').innerHTML='<div style="color:var(--muted);font-size:.75rem;padding:14px 0">Run backprop to build training history...</div>';
-  drawLoss();drawSigmoid();
+
+  drawLoss();
+  drawSigmoid();
+
   $('explainBox').className='explain';
   $('explainTitle').textContent='// What\'s Happening';
   $('explainTitle').style.color='var(--cyan)';
   $('explainInner').innerHTML='Click <b>▶ Forward</b> then <b>↺ Backprop</b> to watch the network learn. Or <b>⚡ Train</b> for automatic learning!';
+
   stepQ=0;
 }
 
+// ═══════════════════════════════════════════════════════
+// BUTTON EVENTS
+// ═══════════════════════════════════════════════════════
 $('bFwd').addEventListener('click',runForward);
 $('bBwd').addEventListener('click',runBackward);
 $('bStep').addEventListener('click',runStep);
@@ -1254,36 +1432,40 @@ $('bReset').addEventListener('click',reset);
 // QUIZ
 // ═══════════════════════════════════════════════════════
 const QUIZ=[
-  {q:'What does the Forward Pass compute?',opts:['Gradients for each weight','The prediction a = σ(wx+b)','The weight update step','The chain rule product'],ans:1,
-   exp:'The forward pass computes z = wx+b, then a = σ(z) — the network\'s prediction.'},
-  {q:'What does the loss L = (y−a)² measure?',opts:['The weight magnitude','How fast the network learns','How wrong the prediction was','The sigmoid output'],ans:2,
-   exp:'The squared error measures the gap between prediction a and true label y. Larger gap = larger loss.'},
-  {q:'Why do we use the chain rule in backpropagation?',opts:['To speed up computation','To compose gradients through multiple layers','To normalize the weights','To initialize parameters'],ans:1,
-   exp:'The chain rule lets us compose derivatives: how much did loss depend on a, times how much did a depend on z, times how much z depended on w.'},
-  {q:'What happens if the learning rate η is too large?',opts:['The network learns too slowly','Weights don\'t change','Weights overshoot and may diverge','Gradients become zero'],ans:2,
-   exp:'A large η causes weight updates to overshoot the minimum, causing the loss to bounce around or explode instead of converging.'},
-  {q:'∂a/∂z for sigmoid is:',opts:['a²','1−a','a(1−a)','2a(1−a)'],ans:2,
-   exp:'The sigmoid derivative is σ(z)·(1−σ(z)) = a(1−a). This elegant formula lets us reuse the output a we already computed in the forward pass.'},
-  {q:'Gradient descent updates weights in which direction?',opts:['Along the gradient','Against the gradient','Randomly','Perpendicular to gradient'],ans:1,
-   exp:'We subtract the gradient: w ← w − η·∂L/∂w. Moving AGAINST the gradient means moving downhill on the loss surface.'},
-  {q:'What does ∂L/∂w tell us?',opts:['The optimal weight value','How much weight w contributed to the loss','The prediction accuracy','The bias update'],ans:1,
-   exp:'∂L/∂w is the gradient: how much the loss changes per unit change in weight w. Positive gradient → weight too large, reduce it.'},
+  {q:'What does the Forward Pass compute?',opts:['Gradients for each weight','The prediction a = σ(wx+b)','The weight update step','The chain rule product'],ans:1,exp:'The forward pass computes z = wx+b, then a = σ(z) — the network\'s prediction.'},
+  {q:'What does the loss L = (y−a)² measure?',opts:['The weight magnitude','How fast the network learns','How wrong the prediction was','The sigmoid output'],ans:2,exp:'The squared error measures the gap between prediction a and true label y. Larger gap = larger loss.'},
+  {q:'Why do we use the chain rule in backpropagation?',opts:['To speed up computation','To compose gradients through multiple layers','To normalize the weights','To initialize parameters'],ans:1,exp:'The chain rule lets us compose derivatives: how much did loss depend on a, times how much did a depend on z, times how much z depended on w.'},
+  {q:'What happens if the learning rate η is too large?',opts:['The network learns too slowly','Weights don\'t change','Weights overshoot and may diverge','Gradients become zero'],ans:2,exp:'A large η causes weight updates to overshoot the minimum, causing the loss to bounce around or explode instead of converging.'},
+  {q:'∂a/∂z for sigmoid is:',opts:['a²','1−a','a(1−a)','2a(1−a)'],ans:2,exp:'The sigmoid derivative is σ(z)·(1−σ(z)) = a(1−a). This elegant formula lets us reuse the output a we already computed in the forward pass.'},
+  {q:'Gradient descent updates weights in which direction?',opts:['Along the gradient','Against the gradient','Randomly','Perpendicular to gradient'],ans:1,exp:'We subtract the gradient: w ← w − η·∂L/∂w. Moving AGAINST the gradient means moving downhill on the loss surface.'},
+  {q:'What does ∂L/∂w tell us?',opts:['The optimal weight value','How much weight w contributed to the loss','The prediction accuracy','The bias update'],ans:1,exp:'∂L/∂w is the gradient: how much the loss changes per unit change in weight w. Positive gradient → weight too large, reduce it.'},
 ];
+
 let qIdx=0,qScore=0,qTotal=0;
 
 function loadQuiz(){
   const q=QUIZ[qIdx%QUIZ.length];
   $('qQuestion').textContent=q.q;
   $('qFeedback').style.display='none';
-  const opts=$('qOpts');opts.innerHTML='';
+  const opts=$('qOpts');
+  opts.innerHTML='';
+
   q.opts.forEach((o,i)=>{
     const btn=document.createElement('button');
-    btn.className='quiz-opt';btn.textContent=o;
+    btn.className='quiz-opt';
+    btn.textContent=o;
     btn.addEventListener('click',()=>{
       opts.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
       btn.classList.add(i===q.ans?'correct':'wrong');
-      if(i===q.ans){opts.querySelectorAll('.quiz-opt')[q.ans].classList.add('correct');qScore++}
-      qTotal++;$('qScore').textContent=`${qScore}/${qTotal} correct`;
+      if(i===q.ans){
+        opts.querySelectorAll('.quiz-opt')[q.ans].classList.add('correct');
+        qScore++;
+      }else{
+        opts.querySelectorAll('.quiz-opt')[q.ans].classList.add('correct');
+      }
+      qTotal++;
+      $('qScore').textContent=`${qScore}/${qTotal} correct`;
+
       const fb=$('qFeedback');
       fb.className='quiz-feedback '+(i===q.ans?'qf-good':'qf-bad');
       fb.textContent=(i===q.ans?'✓ Correct! ':'✗ Not quite. ')+q.exp;
@@ -1292,13 +1474,17 @@ function loadQuiz(){
     opts.appendChild(btn);
   });
 }
-$('qNext').addEventListener('click',()=>{qIdx++;loadQuiz()});
+
+$('qNext').addEventListener('click',()=>{qIdx++;loadQuiz();});
 loadQuiz();
 
 // ═══════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════
-drawNet();drawSigmoid();drawLoss();
+resizeNet();
+startNetLoop();
+drawSigmoid();
+drawLoss();
 </script>
 </body>
 </html>
