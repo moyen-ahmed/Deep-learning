@@ -1485,6 +1485,9 @@ resizeNet();
 startNetLoop();
 drawSigmoid();
 drawLoss();
+  if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+  document.body.classList.add("light");
+}
 </script>
 </body>
 </html>
