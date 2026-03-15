@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backpropagation Visualizer</title>
+  <style>
+    :root {
+      --bg: #f5fff7;
+      --card: #ffffff;
+      --green: #1f8f4d;
+      --green-soft: #dff7e7;
+      --text: #17301f;
+      --muted: #53705d;
+      --line: #b7e2c3;
+      --orange: #ffb347;
+      --red: #ea5a5a;
+      --blue: #4d8cf5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #effff3 0%, #f8fffa 100%);
+      color: var(--text);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero, .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(31, 143, 77, 0.08);
+    }
+    .hero {
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+    h1, h2, h3 { margin: 0 0 12px; }
+    h1 { color: var(--green); font-size: 2rem; }
+    p { line-height: 1.65; }
+    .muted { color: var(--muted); }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+    }
+    .card { padding: 20px; }
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    input[type="range"] { width: 100%; }
+    .value {
+      background: var(--green-soft);
+      border: 1px solid var(--line);
+      padding: 6px 10px;
+      border-radius: 12px;
+      display: inline-block;
+      min-width: 64px;
+      text-align: center;
+      font-weight: bold;
+      color: var(--green);
+    }
+    button {
+      border: 0;
+      background: var(--green);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-top: 14px;
+    }
+    button.secondary { background: #4c6f57; }
+    .network {
+      width: 100%;
+      height: 420px;
+      background: linear-gradient(180deg, #fcfffd 0%, #f0fff4 100%);
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+    .layer-title {
+      position: absolute;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: bold;
+    }
+    .node {
+      position: absolute;
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(31, 143, 77, 0.10);
+      z-index: 2;
+      padding: 8px;
+    }
+    .node.small { width: 60px; height: 60px; font-size: 13px; }
+    .svg-lines {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    .formula {
+      background: #f6fff8;
+      border: 1px dashed var(--line);
+      padding: 14px;
+      border-radius: 14px;
+      margin: 12px 0;
+      font-family: "Courier New", monospace;
+      white-space: pre-wrap;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .step {
+      background: #fbfffc;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .pill {
+      display: inline-block;
+      padding: 6px 10px;
+      background: var(--green-soft);
+      border-radius: 999px;
+      color: var(--green);
+      font-weight: bold;
+      margin: 4px 8px 0 0;
+    }
+    .legend { margin-top: 10px; }
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 14px;
+      font-size: 14px;
+    }
+    .dot {
+      width: 12px; height: 12px; border-radius: 50%; margin-right: 6px;
+      display: inline-block;
+    }
+    .explain-box {
+      background: #f8fff9;
+      border-left: 5px solid var(--green);
+      padding: 14px;
+      border-radius: 12px;
+      margin-top: 14px;
+    }
+    .footer-note {
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 14px;
+      background: #fffdf5;
+      border: 1px solid #f1e2a8;
+    }
+    @media (max-width: 960px) {
+      .grid, .controls, .steps { grid-template-columns: 1fr; }
+      .network { height: 520px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <h1>🌱 Backpropagation Visualizer</h1>
+      <p>
+        This page shows <b>how backpropagation works visually</b>. Move the sliders, then click <b>Run Forward Pass</b> and <b>Run Backpropagation</b>.
+        You will see how the input becomes a prediction, how loss is calculated, and how the error travels backward to update the weight.
+      </p>
+      <div class="pill">Easy theory</div>
+      <div class="pill">Math + intuition</div>
+      <div class="pill">Visual learning</div>
+      <div class="pill">GitHub-ready HTML</div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Interactive Controls</h2>
+        <p class="muted">We use one neuron so the idea stays easy: input x → weighted sum z → sigmoid output a → loss L.</p>
+
+        <div class="controls">
+          <div>
+            <label for="x">Input x</label>
+            <input id="x" type="range" min="-3" max="3" step="0.1" value="1.0">
+            <div class="value" id="xVal">1.0</div>
+          </div>
+          <div>
+            <label for="w">Weight w</label>
+            <input id="w" type="range" min="-3" max="3" step="0.1" value="0.8">
+            <div class="value" id="wVal">0.8</div>
+          </div>
+          <div>
+            <label for="b">Bias b</label>
+            <input id="b" type="range" min="-3" max="3" step="0.1" value="0.2">
+            <div class="value" id="bVal">0.2</div>
+          </div>
+          <div>
+            <label for="y">True Label y</label>
+            <input id="y" type="range" min="0" max="1" step="1" value="1">
+            <div class="value" id="yVal">1</div>
+          </div>
+          <div>
+            <label for="lr">Learning Rate η</label>
+            <input id="lr" type="range" min="0.01" max="1" step="0.01" value="0.1">
+            <div class="value" id="lrVal">0.10</div>
+          </div>
+        </div>
+
+        <button id="forwardBtn">Run Forward Pass</button>
+        <button id="backwardBtn" class="secondary">Run Backpropagation</button>
+        <button id="resetBtn" class="secondary">Reset</button>
+
+        <div class="formula" id="mathBox">Press "Run Forward Pass" to see the equations.</div>
+        <div class="explain-box" id="explainBox">
+          <b>Analogy:</b> Think of a student solving a math problem. The student gives an answer, checks the mistake, then goes backward to find which step caused the mistake. Backpropagation does the same thing for a neural network.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Network View</h2>
+        <div class="network" id="network">
+          <svg class="svg-lines" viewBox="0 0 1000 420" preserveAspectRatio="none">
+            <line id="line1" x1="160" y1="210" x2="500" y2="210" stroke="#1f8f4d" stroke-width="6" opacity="0.55" />
+            <line id="line2" x1="540" y1="210" x2="840" y2="210" stroke="#1f8f4d" stroke-width="6" opacity="0.55" />
+            <line id="gradLine1" x1="840" y1="245" x2="540" y2="245" stroke="#ea5a5a" stroke-width="5" stroke-dasharray="12 8" opacity="0" />
+            <line id="gradLine2" x1="500" y1="245" x2="160" y2="245" stroke="#ea5a5a" stroke-width="5" stroke-dasharray="12 8" opacity="0" />
+          </svg>
+
+          <div class="layer-title" style="left:100px; top:34px;">Input</div>
+          <div class="layer-title" style="left:445px; top:34px;">Neuron</div>
+          <div class="layer-title" style="left:810px; top:34px;">Output</div>
+
+          <div class="node" style="left:90px; top:172px;" id="inputNode">x</div>
+          <div class="node" style="left:465px; top:172px;" id="neuronNode">z</div>
+          <div class="node" style="left:805px; top:172px;" id="outputNode">a</div>
+          <div class="node small" style="left:465px; top:290px; border-color: var(--orange);" id="lossNode">L</div>
+        </div>
+        <div class="legend">
+          <span><i class="dot" style="background:#1f8f4d"></i>Forward signal</span>
+          <span><i class="dot" style="background:#ea5a5a"></i>Backward gradient</span>
+          <span><i class="dot" style="background:#ffb347"></i>Loss</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:20px;">
+      <h2>Backpropagation in 4 Visual Steps</h2>
+      <div class="steps">
+        <div class="step">
+          <h3>1. Forward</h3>
+          <p>The input goes forward through the network. The neuron computes <b>z = wx + b</b>, then uses an activation function to produce output <b>a</b>.</p>
+        </div>
+        <div class="step">
+          <h3>2. Loss</h3>
+          <p>The prediction is compared with the true answer. This difference becomes the loss. Smaller loss means better prediction.</p>
+        </div>
+        <div class="step">
+          <h3>3. Backward</h3>
+          <p>The error moves backward. Using the chain rule, the model finds how much the weight and bias caused the error.</p>
+        </div>
+        <div class="step">
+          <h3>4. Update</h3>
+          <p>The weight is changed using gradient descent: <b>w = w - η·∂L/∂w</b>. This makes the next prediction better.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:20px;">
+      <h2>Memory Tricks</h2>
+      <p><b>Super-short trick:</b> <span class="pill">Forward → Loss → Backward → Update</span></p>
+      <p><b>Easy meaning:</b> First the network <b>answers</b>, then it <b>checks the mistake</b>, then it <b>blames each part</b>, then it <b>fixes itself</b>.</p>
+      <p><b>Another analogy:</b> Throw a ball, miss the basket, see the error, then correct your hand movement next time. That correction step is like backpropagation.</p>
+    </section>
+
+    <section class="footer-note">
+      <b>How to use on GitHub:</b> Save this file as <b>index.html</b> in a GitHub repository, then enable <b>GitHub Pages</b>. Your visualization will open in the browser like a mini website.
+    </section>
+  </div>
+
+  <script>
+    const el = id => document.getElementById(id);
+    const defaults = { x: 1.0, w: 0.8, b: 0.2, y: 1, lr: 0.1 };
+
+    function sigmoid(z) {
+      return 1 / (1 + Math.exp(-z));
+    }
+
+    function updateLabels() {
+      ['x','w','b','y','lr'].forEach(key => {
+        let v = parseFloat(el(key).value);
+        el(key + 'Val').textContent = key === 'lr' ? v.toFixed(2) : v.toFixed ? v.toFixed(1) : v;
+      });
+    }
+
+    function runForward() {
+      const x = parseFloat(el('x').value);
+      const w = parseFloat(el('w').value);
+      const b = parseFloat(el('b').value);
+      const y = parseFloat(el('y').value);
+
+      const z = w * x + b;
+      const a = sigmoid(z);
+      const L = Math.pow(y - a, 2);
+
+      el('inputNode').textContent = `x\n${x.toFixed(2)}`;
+      el('neuronNode').textContent = `z\n${z.toFixed(2)}`;
+      el('outputNode').textContent = `a\n${a.toFixed(2)}`;
+      el('lossNode').textContent = `L\n${L.toFixed(3)}`;
+
+      el('line1').style.opacity = 1;
+      el('line2').style.opacity = 1;
+      el('gradLine1').style.opacity = 0;
+      el('gradLine2').style.opacity = 0;
+
+      el('mathBox').textContent =
+`Forward Pass
+z = w×x + b = ${w.toFixed(2)}×${x.toFixed(2)} + ${b.toFixed(2)} = ${z.toFixed(4)}
+a = sigmoid(z) = 1 / (1 + e^(-z)) = ${a.toFixed(4)}
+Loss L = (y - a)^2 = (${y.toFixed(0)} - ${a.toFixed(4)})^2 = ${L.toFixed(6)}`;
+
+      el('explainBox').innerHTML = `<b>What happened?</b> The network took the input <b>${x.toFixed(2)}</b>, multiplied it by the weight <b>${w.toFixed(2)}</b>, added bias <b>${b.toFixed(2)}</b>, and produced the prediction <b>${a.toFixed(4)}</b>. Then it compared that prediction with the true answer <b>${y.toFixed(0)}</b> and got loss <b>${L.toFixed(6)}</b>.`;
+
+      return { x, w, b, y, z, a, L };
+    }
+
+    function runBackward() {
+      const { x, w, b, y, z, a, L } = runForward();
+      const lr = parseFloat(el('lr').value);
+
+      const dL_da = -2 * (y - a);
+      const da_dz = a * (1 - a);
+      const dz_dw = x;
+      const dz_db = 1;
+      const dL_dw = dL_da * da_dz * dz_dw;
+      const dL_db = dL_da * da_dz * dz_db;
+
+      const newW = w - lr * dL_dw;
+      const newB = b - lr * dL_db;
+
+      el('gradLine1').style.opacity = 1;
+      el('gradLine2').style.opacity = 1;
+
+      el('mathBox').textContent =
+`Backward Pass (Chain Rule)
+dL/da = -2(y - a) = ${dL_da.toFixed(6)}
+da/dz = a(1-a) = ${da_dz.toFixed(6)}
+dz/dw = x = ${dz_dw.toFixed(6)}
+dL/dw = (dL/da)(da/dz)(dz/dw) = ${dL_dw.toFixed(6)}
+dL/db = (dL/da)(da/dz)(1) = ${dL_db.toFixed(6)}
+
+Update Step
+new w = w - η(dL/dw) = ${w.toFixed(4)} - ${lr.toFixed(2)}×${dL_dw.toFixed(6)} = ${newW.toFixed(6)}
+new b = b - η(dL/db) = ${b.toFixed(4)} - ${lr.toFixed(2)}×${dL_db.toFixed(6)} = ${newB.toFixed(6)}`;
+
+      el('explainBox').innerHTML = `<b>What happened in backpropagation?</b> The model started from the loss and moved backward. It asked: <i>How much did output a affect the loss? How much did z affect a? How much did w affect z?</i> By multiplying these pieces with the chain rule, it found <b>∂L/∂w = ${dL_dw.toFixed(6)}</b>. Then it updated the parameters. <br><br><b>New weight:</b> ${newW.toFixed(6)} &nbsp; <b>New bias:</b> ${newB.toFixed(6)}`;
+    }
+
+    function resetAll() {
+      Object.entries(defaults).forEach(([k, v]) => el(k).value = v);
+      updateLabels();
+      el('inputNode').textContent = 'x';
+      el('neuronNode').textContent = 'z';
+      el('outputNode').textContent = 'a';
+      el('lossNode').textContent = 'L';
+      el('mathBox').textContent = 'Press "Run Forward Pass" to see the equations.';
+      el('explainBox').innerHTML = '<b>Analogy:</b> Think of a student solving a math problem. The student gives an answer, checks the mistake, then goes backward to find which step caused the mistake. Backpropagation does the same thing for a neural network.';
+      el('line1').style.opacity = 0.55;
+      el('line2').style.opacity = 0.55;
+      el('gradLine1').style.opacity = 0;
+      el('gradLine2').style.opacity = 0;
+    }
+
+    ['x','w','b','y','lr'].forEach(id => el(id).addEventListener('input', updateLabels));
+    el('forwardBtn').addEventListener('click', runForward);
+    el('backwardBtn').addEventListener('click', runBackward);
+    el('resetBtn').addEventListener('click', resetAll);
+
+    updateLabels();
+    resetAll();
+  </script>
+</body>
+</html>
